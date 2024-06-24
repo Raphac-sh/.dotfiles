@@ -9,7 +9,12 @@
           "directory": "/tmp/ccls"
         }
       }
-  }
+  },
+  "ocaml": {
+      "command": "ocaml-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["ocaml", "reason"]
+    }
 },
 "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "javascript"]
 }

@@ -1,9 +1,11 @@
-export ZSH="/home/raphael/.oh-my-zsh"
+export ZSH="/usr/share/oh-my-zsh"
 ZSH_THEME="spaceship"
 ENABLE_CORRECTION="true"
 plugins=(git zsh-autosuggestions python debian common-aliases zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+bindkey -s '^F' './.local/bin/tmux-sessionizer\n'
 
 #aliases
 cl() {cd "$@" && ls -l; }
@@ -33,3 +35,6 @@ SPACESHIP_EXEC_TIME_COLOR=#fabd2f
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# opam configuration
+[[ ! -r /home/rsb/.opam/opam-init/init.zsh ]] || source /home/rsb/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
