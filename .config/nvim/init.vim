@@ -29,7 +29,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
 Plug 'gruvbox-community/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'preservim/nerdtree'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -41,6 +40,10 @@ call plug#end()
 colorscheme gruvbox
 
 hi Normal guibg=NONE ctermbg=NONE
+
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_general_options
+    \ = '-reuse-instance -forward-search @tex @line @pdf'
 
 let mapleader=" "
 nnoremap <leader>h :wincmd h<CR>
@@ -63,7 +66,7 @@ nnoremap <Leader>cx :w <bar> :!gcc % && ./a.out<CR>
 nnoremap <Leader>ox :w <bar> :!ocaml % <CR>
 nnoremap <Leader>ot :w <bar> :!ocaml <CR>
 nnoremap <Leader>tc :w <bar> :!pdflatex % <CR>
-nnoremap <Leader>tp :w <bar> :LLPStartPreview <CR>
+nnoremap <Leader>tp :w <bar> :VimtexCompile <CR>
 nnoremap <Leader>wp :w <bar> :!nohup live-server --browser=firefox-dev --quiet &<CR>
 
 inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"

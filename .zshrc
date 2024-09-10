@@ -1,7 +1,7 @@
-export ZSH="/usr/share/oh-my-zsh"
-ZSH_THEME="spaceship"
+export ZSH="$HOME/.oh-my-zsh"
 ENABLE_CORRECTION="true"
-plugins=(git zsh-autosuggestions python debian common-aliases zsh-syntax-highlighting)
+plugins=(git starship zsh-autosuggestions python common-aliases zsh-syntax-highlighting)
+ZSH_THEME="starship"
 
 source $ZSH/oh-my-zsh.sh
 

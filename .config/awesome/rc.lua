@@ -96,6 +96,7 @@ awful.layout.layouts = {
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock("%d/%m, %k:%M ")
+mytextclock.timezone = "Europe/Paris"
 
 local cw = calendar_widget({
     placement = 'top_right'
@@ -166,7 +167,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({"www", "chat", "work", "1", "2", "3"}, s, awful.layout.layouts[1])
+    awful.tag({"1", "2", "3"}, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -367,7 +368,7 @@ globalkeys = gears.table.join(
               {description = "run prompt", group = "launcher"}),
 
     -- Launch firefox 
-    awful.key({ modkey },            "b",     function () awful.util.spawn("firefox-dev")  end,
+    awful.key({ modkey },            "b",     function () awful.util.spawn("firefox")  end,
               {description = "run prompt", group = "launcher"}),
 
     -- Launch discord 
@@ -642,19 +643,21 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) c.border_color = "D8A657" end)
+client.connect_signal("unfocus", function(c) c.border_color = "D8A657" end)
 -- }}}
 
 -- Autostart applications
-awful.spawn.with_shell("compton")
-awful.spawn.with_shell("feh --bg-fill ~/Images/wall_secondary.jpg")
+awful.spawn.with_shell("picom --config ~/.config/picom.conf")
+awful.spawn.with_shell("feh --bg-fill ~/Images/Wallpaper.png")
 awful.spawn.with_shell('setxkbmap -layout "fr"')
 awful.spawn.with_shell("xset m 1 2")
 awful.spawn.with_shell("amixer set Master 55%")
-awful.util.spawn("firefox-dev") 
+awful.spawn.with_shell("timedatectl set-timezone Europe/Paris")
+awful.spawn.with_shell("insync start")
+awful.util.spawn("firefox") 
 awful.util.spawn("discord") 
 
 -- Add useless gap to windows
-beautiful.useless_gap = 4 
+beautiful.useless_gap = 5 
 beautiful.gap_single_client = true
